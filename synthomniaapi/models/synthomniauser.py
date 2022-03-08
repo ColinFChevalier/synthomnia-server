@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from synthomniaapi.models import mood
+from synthomniaapi.models import Mood
 
 class SynthomniaUser(models.Model):
     """
@@ -22,7 +22,7 @@ class SynthomniaUser(models.Model):
     active = models.BooleanField(default=True)
     is_artist = models.BooleanField(default=False)
     user_moods = models.ForeignKey(
-        mood,
+        Mood,
         null=True,
         on_delete=models.CASCADE
         )

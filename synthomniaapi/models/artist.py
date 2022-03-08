@@ -11,5 +11,5 @@ class Artist(models.Model):
         )
     bio = models.CharField(
         max_length=500,
-        on_delete=models.CASCADE
+        # on_delete=models.CASCADE
     )

@@ -1,5 +1,5 @@
 from django.db import models
-from synthomniaapi.models import artist, mood
+from synthomniaapi.models import Artist, Mood
 
 class Track(models.Model):
     """
@@ -14,10 +14,11 @@ class Track(models.Model):
         null=False,
     )
     moodId = models.ForeignKey(
-        mood,
+        Mood,
         on_delete=models.CASCADE
         )
     artistId = models.ForeignKey(
-        artist,
+        Artist,
         on_delete=models.CASCADE
         )
+

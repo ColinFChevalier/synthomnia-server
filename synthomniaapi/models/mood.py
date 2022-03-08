@@ -1,5 +1,5 @@
 from django.db import models
-from synthomniaapi.models import track
+# from synthomniaapi.models import Track
 
 class Mood(models.Model):
     """
@@ -7,12 +7,13 @@ class Mood(models.Model):
     """
     name = models.CharField(
         max_length=30,
-        on_delete=models.CASCADE
+        # on_delete=models.CASCADE
     )
-    track = models.ForeignKey(
-        track,
-        on_delete=models.CASCADE
-        )
+    # track = models.ForeignKey(
+    #     Track,
+    #     related_name="mood_track",
+    #     on_delete=models.CASCADE
+    #     )
     imgURL = models.CharField(
         max_length=500,
         null=True
