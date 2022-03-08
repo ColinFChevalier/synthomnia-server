@@ -5,7 +5,6 @@ class Track(models.Model):
     """
     model for Track
     """
-    moodId = models.ForeignKey(mood)
     title = models.CharField(
         max_length=50,
         default="Track has not been named"
@@ -14,4 +13,11 @@ class Track(models.Model):
         max_length=1000,
         null=False,
     )
-    artistId = models.ForeignKey(artist)
+    moodId = models.ForeignKey(
+        mood,
+        on_delete=models.CASCADE
+        )
+    artistId = models.ForeignKey(
+        artist,
+        on_delete=models.CASCADE
+        )

@@ -9,7 +9,10 @@ class Mood(models.Model):
         max_length=30,
         on_delete=models.CASCADE
     )
-    track = models.ForeignKey(track)
+    track = models.ForeignKey(
+        track,
+        on_delete=models.CASCADE
+        )
     imgURL = models.CharField(
         max_length=500,
         null=True
