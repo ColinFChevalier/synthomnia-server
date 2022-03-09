@@ -5,15 +5,7 @@ class Mood(models.Model):
     """
     model for playlists
     """
-    name = models.CharField(
-        max_length=30,
-        # on_delete=models.CASCADE
-    )
-    # track = models.ForeignKey(
-    #     Track,
-    #     related_name="mood_track",
-    #     on_delete=models.CASCADE
-    #     )
+    name = models.CharField(max_length=30)
     imgURL = models.CharField(
         max_length=500,
         null=True

@@ -21,4 +21,3 @@ class Track(models.Model):
         Artist,
         on_delete=models.CASCADE
         )
-
