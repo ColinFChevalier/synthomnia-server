@@ -13,11 +13,11 @@ class Track(models.Model):
         max_length=1000,
         null=False,
     )
-    moodId = models.ForeignKey(
+    mood = models.ForeignKey(
         Mood,
         on_delete=models.CASCADE
         )
-    artistId = models.ForeignKey(
+    artist = models.ForeignKey(
         Artist,
         on_delete=models.CASCADE
         )

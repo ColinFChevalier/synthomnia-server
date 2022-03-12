@@ -7,7 +7,7 @@ class Artist(models.Model):
     """
     models for Artist
     """
-    userId = models.ForeignKey(
+    user = models.ForeignKey(
         User,
         on_delete=models.CASCADE
         )
