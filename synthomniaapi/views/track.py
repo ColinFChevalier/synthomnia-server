@@ -1,6 +1,7 @@
-from django.contrib.auth.models import User
 from rest_framework import status
 from rest_framework.decorators import action
+from django.http import HttpResponseServerError
+from django.core.exceptions import ValidationError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
@@ -12,6 +13,18 @@ class TrackView(ViewSet):
         track = Track.objects.all()
         serializer = TrackSerializer(track, many=True, context={'request': request})
         return Response(serializer.data)
+
+    def retrieve(self, request, pk=None):
+        try:
+            track = Track.objects.get(pk=pk)
+            serializer = TrackSerializer(track, context={'request': request})
+            return Response(serializer.data)
+
+        except Exception as ex:
+            return HttpResponseServerError(ex)
+
+    # add update method
+    # add destroy method
 
     def create(self, request):
         track = Track()
