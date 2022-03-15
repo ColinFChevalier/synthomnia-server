@@ -15,7 +15,7 @@ class SynthomniaUserView(ViewSet):
         synthomniauser = SynthomniaUser.objects.get(user=request.auth.user)
         # synthomniauser = SynthomniaUser.objects.all()
 
-        synthomniauser = RareUserSerializer(
+        synthomniauser = SynthomniaUserSerializer(
             synthomniauser, many=False, context={'request': request}
         )
 
@@ -31,7 +31,7 @@ class SynthomniaUserView(ViewSet):
         try: 
             
             synthomniauser = SynthomniaUser.objects.get(pk=pk)
-            serializer = RareUserSerializer(synthomniauser, context={'request': request })
+            serializer = SynthomniaUserSerializer(synthomniauser, context={'request': request })
             return Response(serializer.data)
         except Exception as ex:
             return HttpResponseServerError(ex)
@@ -50,7 +50,7 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('id', 'first_name', 'last_name', 'username', 'is_superuser', 'is_staff')
 
-class RareUserSerializer(serializers.ModelSerializer):
+class SynthomniaUserSerializer(serializers.ModelSerializer):
     user = UserSerializer(many=False)
 
     class Meta:

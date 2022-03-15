@@ -1,0 +1,18 @@
+[
+    {
+        "model": "synthomniaapi.mood",
+        "pk": 1,
+        "fields": {
+            "name": "mood_test",
+            "imgURL": "https://f4.bcbits.com/img/a0440502418_16.jpg"
+        }
+    },
+    {
+        "model": "synthomniaapi.mood",
+        "pk": 2,
+        "fields": {
+            "name": "mood_test_2",
+            "imgURL": "https://f4.bcbits.com/img/a0440502418_16.jpg"
+        }
+    }
+]

@@ -26,6 +26,12 @@ class MoodView(ViewSet):
         except ValidationError as ex:
             return Response({"reason": ex.message}, status=status.HTTP_400_BAD_REQUEST)
 
+    def list(self, request, pk=None):
+            mood = Mood.objects.all()
+            serializer = MoodSerializer(
+                mood, many=True, context={'request': request})
+            return Response(serializer.data)
+            
     def retrieve(self, request, pk=None):
         try:
             mood = Mood.objects.get(pk=pk)
@@ -59,17 +65,18 @@ class MoodView(ViewSet):
         except Exception as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-class MoodUserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ['id']
+# class PostUserSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = User
+#         fields = ['id']
+
+# class MoodSynthomniaUserSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = SynthomniaUser
+#         fields = ['id']
 
 class MoodSerializer(serializers.ModelSerializer):
-    # SynthomniaUser = PostRareUserSerializer(many=False)
-    # reaction = PostReactionSerializer(many=True)
-    # category = PostCategorySerializer(many=False)
-    # tag = PostTagSerializer(many=True)
-
+    # synthomnia_user = MoodSynthomniaUserSerializer(many=False)
     class Meta:
         model = Mood
         fields = ('id', 'name', 'imgURL')

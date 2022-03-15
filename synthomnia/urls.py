@@ -22,7 +22,7 @@ from synthomniaapi.views import (SynthomniaUserView, MoodView)
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'synthomniauser', SynthomniaUserView, basename='synthomniauser')
-router.register(r'mood', MoodView, basename='mood')
+router.register(r'moods', MoodView, basename='mood')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
