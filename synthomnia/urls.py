@@ -18,11 +18,13 @@ from django.urls import path
 from django.conf.urls import include
 from rest_framework import routers
 from synthomniaapi.views import register_user, login_user
-from synthomniaapi.views import (SynthomniaUserView, MoodView)
+from synthomniaapi.views import (SynthomniaUserView, MoodView, TrackView, MoodTrackView)
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'synthomniauser', SynthomniaUserView, basename='synthomniauser')
 router.register(r'moods', MoodView, basename='mood')
+router.register(r'tracks', TrackView, basename='track')
+router.register(r'moodtrack', MoodTrackView, basename='moodtrack')
 
 urlpatterns = [
     path('admin/', admin.site.urls),

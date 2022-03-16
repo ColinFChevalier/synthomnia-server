@@ -7,43 +7,31 @@ from rest_framework.response import Response
 from rest_framework import serializers
 from synthomniaapi.models import Track, Mood, Artist
 
-class TrackView(ViewSet):
+class MoodTrackView(ViewSet):
 
     def list(self, request):
-        # mood = Mood.objects.get(pk=request.data["moodId"])
-        mood = self.request.query_params.get("moodId", None)
-        # track.mood = mood
-        track = Track.objects.filter(mood__id=mood)
-        # mood = Mood.objects.get(pk=request.data["moodId"])
-        # track.mood = mood
+        track = Track.objects.all()
         serializer = TrackSerializer(track, many=True, context={'request': request})
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
         try:
-            track = Track.objects.get(pk=pk)
-            mood = Mood.objects.get(pk=request.data["moodId"])
-            track.mood = mood
+            # track = Track.objects.get(pk=pk)
+            import pdb; pdb.set_trace()
+            mood = Mood.objects.get(pk=request.data["mood"])
+            track = Track.objects.filter(mood = mood)
             serializer = TrackSerializer(track, context={'request': request})
             return Response(serializer.data)
 
         except Exception as ex:
             return HttpResponseServerError(ex)
 
-    # add update method
-    # add destroy method
+class TrackMoodSerializer(serializers.ModelSerializer):
+    # synthomnia_user = MoodSynthomniaUserSerializer(many=False)
+    class Meta:
+        model = Mood
+        fields = ('id', 'name', 'imgURL')
 
-    def create(self, request):
-        track = Track()
-        track.title = request.data["title"]
-        track.bandcampURL = request.data["bandcampURL"]
-
-        mood = Mood.objects.get(pk=request.data["mood"])
-        track.mood = mood
-        
-        artist = Artist.objects.get(pk=request.data["artist"])
-        track.artist = artist
-        
 class TrackSerializer(serializers.ModelSerializer):
     class Meta:
         model = Track

@@ -1,0 +1,10 @@
+[
+    {
+        "model": "synthomniaapi.artist",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "bio": "this is a test bio!!!!"
+        }
+    }
+]
