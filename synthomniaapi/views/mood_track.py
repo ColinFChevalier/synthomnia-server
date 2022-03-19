@@ -10,14 +10,16 @@ from synthomniaapi.models import Track, Mood, Artist
 class MoodTrackView(ViewSet):
 
     def list(self, request):
-        track = Track.objects.all()
+        # mood = Mood.objects.get(pk=request.data["mood"])
+        mood = self.request.query_params.get("moodId", None)
+        track = Track.objects.filter(mood = mood)
         serializer = TrackSerializer(track, many=True, context={'request': request})
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
         try:
             # track = Track.objects.get(pk=pk)
-            import pdb; pdb.set_trace()
+            # import pdb; pdb.set_trace()
             mood = Mood.objects.get(pk=request.data["mood"])
             track = Track.objects.filter(mood = mood)
             serializer = TrackSerializer(track, context={'request': request})

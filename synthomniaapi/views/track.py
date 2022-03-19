@@ -11,9 +11,10 @@ class TrackView(ViewSet):
 
     def list(self, request):
         # mood = Mood.objects.get(pk=request.data["moodId"])
+        # track = Track.objects.filter(mood__id=mood)
+        track = Track.objects.all()
         mood = self.request.query_params.get("moodId", None)
         # track.mood = mood
-        track = Track.objects.filter(mood__id=mood)
         # mood = Mood.objects.get(pk=request.data["moodId"])
         # track.mood = mood
         serializer = TrackSerializer(track, many=True, context={'request': request})
@@ -22,8 +23,8 @@ class TrackView(ViewSet):
     def retrieve(self, request, pk=None):
         try:
             track = Track.objects.get(pk=pk)
-            mood = Mood.objects.get(pk=request.data["moodId"])
-            track.mood = mood
+            # mood = Mood.objects.get(pk=request.data["moodId"])
+            # track.mood = mood
             serializer = TrackSerializer(track, context={'request': request})
             return Response(serializer.data)
 

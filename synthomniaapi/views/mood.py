@@ -3,9 +3,10 @@ from rest_framework import status
 from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
+from rest_framework.decorators import action
 from rest_framework import serializers
 from rest_framework import status
-from synthomniaapi.models import Mood, SynthomniaUser
+from synthomniaapi.models import Mood, SynthomniaUser, Track
 from django.contrib.auth.models import User
 
 class MoodView(ViewSet):
@@ -65,6 +66,24 @@ class MoodView(ViewSet):
         except Exception as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
+    @action(methods=["GET"], detail=True)
+    def tracks(self,request, pk=None):
+        mood_tracks = Track.objects.filter(moodId=pk)
+        serializer = MoodTrackSerializer(mood_tracks, context={'request: request'}, many=True)
+        return Response(serializer.data)
+
+class MoodTrackSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Track
+        fields = ('id', 'title', 'bandcampURL', 'mood', 'artist')
+
+class MoodSerializer(serializers.ModelSerializer):
+    # synthomnia_user = MoodSynthomniaUserSerializer(many=False)
+    class Meta:
+        model = Mood
+        fields = ('id', 'name', 'imgURL')
+
+
 # class PostUserSerializer(serializers.ModelSerializer):
 #     class Meta:
 #         model = User
@@ -74,9 +93,3 @@ class MoodView(ViewSet):
 #     class Meta:
 #         model = SynthomniaUser
 #         fields = ['id']
-
-class MoodSerializer(serializers.ModelSerializer):
-    # synthomnia_user = MoodSynthomniaUserSerializer(many=False)
-    class Meta:
-        model = Mood
-        fields = ('id', 'name', 'imgURL')
