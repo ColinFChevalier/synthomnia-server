@@ -23,7 +23,7 @@ class TrackView(ViewSet):
     def retrieve(self, request, pk=None):
         try:
             track = Track.objects.get(pk=pk)
-            # mood = Mood.objects.get(pk=request.data["moodId"])
+            mood = Mood.objects.get(pk=request.data["moodId"])
             # track.mood = mood
             serializer = TrackSerializer(track, context={'request': request})
             return Response(serializer.data)
@@ -38,12 +38,18 @@ class TrackView(ViewSet):
         track = Track()
         track.title = request.data["title"]
         track.bandcampURL = request.data["bandcampURL"]
-
+        
         mood = Mood.objects.get(pk=request.data["mood"])
         track.mood = mood
-        
         artist = Artist.objects.get(pk=request.data["artist"])
         track.artist = artist
+
+        try:
+            track.save()
+            serializer = TrackSerializer(track, context={'request': request})
+            return Response(serializer.data)
+        except ValidationError as ex:
+            return Response({"reason": ex.message}, status=status.HTTP_400_BAD_REQUEST)
         
 class TrackSerializer(serializers.ModelSerializer):
     class Meta:
