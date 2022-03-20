@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework import serializers
 from rest_framework import status
-from synthomniaapi.models import Mood, SynthomniaUser, Track
+from synthomniaapi.models import Mood, SynthomniaUser, Track, Artist
 from django.contrib.auth.models import User
 
 class MoodView(ViewSet):
@@ -77,8 +77,14 @@ class MoodTrackSerializer(serializers.ModelSerializer):
         model = Track
         fields = ('id', 'title', 'bandcampURL', 'mood', 'artist')
 
+# class ArtistMoodSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Artist
+#         fields = ('id', 'user', 'bio', 'mood')
+
 class MoodSerializer(serializers.ModelSerializer):
     # synthomnia_user = MoodSynthomniaUserSerializer(many=False)
+    # artist = ArtistMoodSerializer(many=True)
     class Meta:
         model = Mood
         fields = ('id', 'name', 'imgURL')

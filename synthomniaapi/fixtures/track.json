@@ -5,7 +5,7 @@
         "fields": {
             "title": "Confliction",
             "bandcampURL": "https://bandcamp.com/EmbeddedPlayer/album=2257075792/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/track=3435082063/transparent=true/",
-            "mood": 1,
+            "mood": [1],
             "artist": 1
         }
     },
@@ -15,7 +15,17 @@
         "fields": {
             "title": "C",
             "bandcampURL": "https://bandcamp.com/EmbeddedPlayer/album=2257075792/size=large/bgcol=181a1b/linkcol=056cc4/tracklist=false/track=1193503173/transparent=true/",
-            "mood": 2,
+            "mood": [2],
+            "artist": 1
+        }
+    },
+    {
+        "model": "synthomniaapi.track",
+        "pk": 8,
+        "fields": {
+            "title": "C",
+            "bandcampURL": "https://bandcamp.com/EmbeddedPlayer/album=2257075792/size=large/bgcol=181a1b/linkcol=056cc4/tracklist=false/track=1193503173/transparent=true/",
+            "mood": [2,4],
             "artist": 1
         }
     }

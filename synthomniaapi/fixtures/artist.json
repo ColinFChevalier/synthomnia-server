@@ -4,7 +4,17 @@
         "pk": 1,
         "fields": {
             "user": 1,
-            "bio": "this is a test bio!!!!"
+            "bio": "this is a test bio!!!!",
+            "mood": [1]
+        }
+    },
+    {
+        "model": "synthomniaapi.artist",
+        "pk": 2,
+        "fields": {
+            "user": 3,
+            "bio": "this is a test bio!!!!",
+            "mood": [1,2]
         }
     }
 ]

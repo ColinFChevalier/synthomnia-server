@@ -1,6 +1,7 @@
 from django.db import models
 # from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
+from synthomniaapi.models.mood import Mood
 User = get_user_model()
 
 class Artist(models.Model):
@@ -14,4 +15,8 @@ class Artist(models.Model):
     bio = models.CharField(
         max_length=500,
         # on_delete=models.CASCADE
+    )
+    mood = models.ManyToManyField(
+        Mood,
+        related_name="mood"
     )
