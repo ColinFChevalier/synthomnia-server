@@ -15,7 +15,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import include
+from rest_framework import routers
+from synthomniaapi.views import register_user, login_user
+from synthomniaapi.views import (SynthomniaUserView, MoodView, TrackView, MoodTrackView, ArtistView)
+
+router = routers.DefaultRouter(trailing_slash=False)
+router.register(r'synthomniauser', SynthomniaUserView, basename='synthomniauser')
+router.register(r'moods', MoodView, basename='mood')
+router.register(r'tracks', TrackView, basename='track')
+router.register(r'moodtrack', MoodTrackView, basename='moodtrack')
+router.register(r'artist', ArtistView, basename='artist')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('register', register_user),
+    path('login', login_user),
+    path('api-auth', include('rest_framework.urls', namespace='rest_framework')),
+    path('', include(router.urls))
 ]

@@ -7,3 +7,6 @@ disable=broad-except
 [MASTER]
 disable=C0114,
 
+[MASTER]
+disable=
+    C0114, # missing-module-docstring
