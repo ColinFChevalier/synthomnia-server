@@ -13,14 +13,12 @@ class SynthomniaUserView(ViewSet):
     """
     def list(self, request):
         synthomniauser = SynthomniaUser.objects.get(user=request.auth.user)
-        # synthomniauser = SynthomniaUser.objects.all()
 
         synthomniauser = SynthomniaUserSerializer(
             synthomniauser, many=False, context={'request': request}
         )
 
         profile = {}
-        # profile.user = request.data["user"]
         profile["synthomniauser"] = synthomniauser.data
 
         return Response(profile)
@@ -57,14 +55,3 @@ class SynthomniaUserSerializer(serializers.ModelSerializer):
         model = SynthomniaUser
         fields = ('id', 'user', 'bio', 'profile_image_url',
         'created_on', 'active')
-
-
-
-
-
-
-    # @action(methods=["GET"], detail=True)
-    # def posts(self,request, pk=None):
-    #     user_posts = Post.objects.filter(rare_user=pk)
-    #     serializer = PostSerializer(user_posts, context={'request: request'}, many=True)
-    #     return Response(serializer.data)

@@ -10,7 +10,6 @@ from synthomniaapi.models import Track, Mood, Artist
 class MoodTrackView(ViewSet):
 
     def list(self, request):
-        # mood = Mood.objects.get(pk=request.data["mood"])
         mood = self.request.query_params.get("moodId", None)
         track = Track.objects.filter(mood = mood)
         serializer = TrackSerializer(track, many=True, context={'request': request})
@@ -18,8 +17,6 @@ class MoodTrackView(ViewSet):
 
     def retrieve(self, request, pk=None):
         try:
-            # track = Track.objects.get(pk=pk)
-            # import pdb; pdb.set_trace()
             mood = Mood.objects.get(pk=request.data["mood"])
             track = Track.objects.filter(mood = mood)
             serializer = TrackSerializer(track, context={'request': request})
@@ -29,7 +26,6 @@ class MoodTrackView(ViewSet):
             return HttpResponseServerError(ex)
 
 class TrackMoodSerializer(serializers.ModelSerializer):
-    # synthomnia_user = MoodSynthomniaUserSerializer(many=False)
     class Meta:
         model = Mood
         fields = ('id', 'name', 'imgURL')

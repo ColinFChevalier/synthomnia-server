@@ -77,25 +77,8 @@ class MoodTrackSerializer(serializers.ModelSerializer):
         model = Track
         fields = ('id', 'title', 'bandcampURL', 'mood', 'artist')
 
-# class ArtistMoodSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Artist
-#         fields = ('id', 'user', 'bio', 'mood')
 
 class MoodSerializer(serializers.ModelSerializer):
-    # synthomnia_user = MoodSynthomniaUserSerializer(many=False)
-    # artist = ArtistMoodSerializer(many=True)
     class Meta:
         model = Mood
         fields = ('id', 'name', 'imgURL')
-
-
-# class PostUserSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = User
-#         fields = ['id']
-
-# class MoodSynthomniaUserSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = SynthomniaUser
-#         fields = ['id']
