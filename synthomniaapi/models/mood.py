@@ -1,5 +1,4 @@
 from django.db import models
-# from synthomniaapi.models import Track
 
 class Mood(models.Model):
     """

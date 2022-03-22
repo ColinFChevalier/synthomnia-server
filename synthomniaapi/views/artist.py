@@ -7,7 +7,6 @@ from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
 from synthomniaapi.models import Artist, SynthomniaUser, Mood
-# from synthomniaapi.views.mood import MoodSerializer
 from django.contrib.auth.models import User
 
 class ArtistView(ViewSet):
