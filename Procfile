@@ -1,1 +1,1 @@
-web: gunicorn synthomnia.wsgi
+web: gunicorn synthomnia.wsgi --log-file -
