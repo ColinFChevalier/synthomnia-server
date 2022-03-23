@@ -12,7 +12,6 @@ from django.contrib.auth.models import User
 class MoodView(ViewSet):
 
     def create(self, request):
-
         synthomniauser = SynthomniaUser.objects.get(user=request.auth.user)
 
         mood = Mood()
