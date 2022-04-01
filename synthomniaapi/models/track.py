@@ -17,8 +17,8 @@ class Track(models.Model):
         Mood,
         on_delete=models.CASCADE
         )
-    artist = models.ForeignKey(
-        Artist,
-        on_delete=models.CASCADE,
-        null=True
-        )
+    # artist = models.ForeignKey(
+    #     Artist,
+    #     on_delete=models.CASCADE,
+    #     null=True
+    #     )
