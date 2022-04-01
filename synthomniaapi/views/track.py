@@ -33,8 +33,8 @@ class TrackView(ViewSet):
         
         mood = Mood.objects.get(pk=request.data["mood"])
         track.mood = mood
-        artist = Artist.objects.get(pk=request.data["artist"])
-        track.artist = artist
+        # artist = Artist.objects.get(pk=request.data["artist"])
+        # track.artist = artist
 
         try:
             track.save()
