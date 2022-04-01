@@ -33,4 +33,4 @@ class TrackMoodSerializer(serializers.ModelSerializer):
 class TrackSerializer(serializers.ModelSerializer):
     class Meta:
         model = Track
-        fields = ('id', 'title', 'bandcampURL', 'mood', 'artist')
+        fields = ('id', 'title', 'bandcampURL', 'mood')
