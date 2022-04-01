@@ -19,5 +19,6 @@ class Track(models.Model):
         )
     artist = models.ForeignKey(
         Artist,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        null=True
         )
