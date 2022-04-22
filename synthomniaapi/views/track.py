@@ -33,8 +33,8 @@ class TrackView(ViewSet):
         
         mood = Mood.objects.get(pk=request.data["mood"])
         track.mood = mood
-        artist = Artist.objects.get(pk=request.data["artist"])
-        track.artist = artist
+        # artist = Artist.objects.get(pk=request.data["artist"])
+        # track.artist = artist
 
         try:
             track.save()
@@ -46,4 +46,4 @@ class TrackView(ViewSet):
 class TrackSerializer(serializers.ModelSerializer):
     class Meta:
         model = Track
-        fields = ('id', 'title', 'bandcampURL', 'mood', 'artist')
+        fields = ('id', 'title', 'bandcampURL', 'mood')
